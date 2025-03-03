@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="pictures">
+    <file>uiPictures/soundOff.png</file>
+    <file>uiPictures/soundOn.png</file>
+    <file>uiPictures/back.png</file>
+    <file>uiPictures/clock.png</file>
+    <file>uiPictures/calendar.png</file>
+    <file>uiPictures/Teacher.png</file>
+    <file>uiPictures/keys.png</file>
+    <file>uiPictures/ota.png</file>
+    <file>uiPictures/palauta.drawio.png</file>
+  </qresource>
+</RCC>
