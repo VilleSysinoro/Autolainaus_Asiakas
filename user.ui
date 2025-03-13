@@ -64,21 +64,24 @@ color: rgb(32, 75, 70);</string>
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>330</y>
-      <width>181</width>
-      <height>31</height>
+      <y>310</y>
+      <width>170</width>
+      <height>45</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <family>Trebuchet MS</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);</string>
+     <string notr="true">background-color: rgb(213, 212, 207);
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string/>
+     <string>XUX-682</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -362,7 +365,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="carInfoLabel">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>340</x>
       <y>370</y>
       <width>181</width>
       <height>71</height>
@@ -425,21 +428,24 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>330</y>
-      <width>181</width>
-      <height>31</height>
+      <y>310</y>
+      <width>170</width>
+      <height>45</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <family>Trebuchet MS</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);</string>
+     <string notr="true">background-color: rgb(213, 212, 207);
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string/>
+     <string>XUX-682</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -456,7 +462,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>811</width>
+      <width>1081</width>
       <height>391</height>
      </rect>
     </property>
@@ -515,7 +521,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>490</x>
        <y>60</y>
-       <width>401</width>
+       <width>571</width>
        <height>331</height>
       </rect>
      </property>
@@ -682,7 +688,7 @@ border-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>440</y>
+      <y>470</y>
       <width>341</width>
       <height>241</height>
      </rect>
@@ -697,6 +703,45 @@ border-color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="registerPlateLabel">
+    <property name="geometry">
+     <rect>
+      <x>321</x>
+      <y>297</y>
+      <width>231</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>ssnLineEdit</zorder>
+   <zorder>takeCarPushButton</zorder>
+   <zorder>keyPictureLabel</zorder>
+   <zorder>lenderPictureLabel</zorder>
+   <zorder>dateLabel</zorder>
+   <zorder>returnCarPushButton</zorder>
+   <zorder>calendarLabel</zorder>
+   <zorder>timeLabel</zorder>
+   <zorder>clockLabel</zorder>
+   <zorder>goBackPushButton</zorder>
+   <zorder>lenderNameLabel</zorder>
+   <zorder>carInfoLabel</zorder>
+   <zorder>okPushButton</zorder>
+   <zorder>statusLabel</zorder>
+   <zorder>soundCheckBox</zorder>
+   <zorder>vehiclePictureLabel</zorder>
+   <zorder>registerPlateLabel</zorder>
+   <zorder>keyReturnBarcodeLineEdit</zorder>
+   <zorder>keyBarcodeLineEdit</zorder>
+   <zorder>statusFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

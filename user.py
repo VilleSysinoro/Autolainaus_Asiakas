@@ -123,6 +123,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.keyBarcodeLineEdit.hide()
         self.ui.keyReturnBarcodeLineEdit.clear()
         self.ui.keyReturnBarcodeLineEdit.hide()
+        self.ui.registerPlateLabel.hide()
         self.ui.keyPictureLabel.hide()
         self.ui.lenderPictureLabel.hide()
         self.ui.ssnLineEdit.clear()
@@ -146,11 +147,40 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             # Luodaan tietokantayhteys-olio
             dbConnection = dbOperations.DbConnection(dbSettings)
+            # Luetaan ajossa nämkymästä lista, jonka jäsenet ovat monikoita (tuple)
             inUseVehicles = dbConnection.readAllColumnsFromTable('ajossa')
+
+            # Alustetaan tyhjä lista muokattuja autotietoja varten
+            modifiedInUseVehiclesList = []
+
+            # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
+            modifiedInUseVehicles = []
             
+            # Käydään lista läpi ja lisätään tuplen monikon alkiot listaan
+            for vehiocleTuple in inUseVehicles:
+
+                modifiedInUseVehicles.append(vehiocleTuple[0])
+                modifiedInUseVehicles.append(vehiocleTuple[1])
+                modifiedInUseVehicles.append(vehiocleTuple[2])
+                modifiedInUseVehicles.append(vehiocleTuple[3])
+                modifiedInUseVehicles.append(vehiocleTuple[4])
+
+                # Listään sana paikaa
+                modifiedInUseVehicles.append('paikkaa')
+                modifiedInUseVehicles.append(vehiocleTuple[5])
+
+                # Muutetaan lista takaisin monikoksi
+                modifiedInUseVehicleTuple = tuple(modifiedInUseVehicles)
+
+                # Lisätään monikko lopulliseen listaan
+                modifiedInUseVehiclesList.append(modifiedInUseVehicleTuple)
+
             # Muodostetaan luettelo vapaista autoista createCatalog-metodilla
-            catalogData = self.createCatalog(inUseVehicles)
+            catalogData = self.createCatalog(modifiedInUseVehiclesList)
             self.ui.inUsePlainTextEdit.setPlainText(catalogData)
+
+            print(modifiedInUseVehiclesList)
+            print(catalogData)
 
         except Exception as e:
             title = 'Autotietojen lukeminen ei onnistunut'
@@ -197,6 +227,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.ssnLineEdit.hide()
         self.ui.keyPictureLabel.show()
         self.ui.keyBarcodeLineEdit.show()
+        self.ui.registerPlateLabel.show()
         self.ui.keyBarcodeLineEdit.setFocus()
         self.ui.lenderNameLabel.show()
         self.ui.statusbar.showMessage('Syötä avaimenperä koneeseen')
@@ -353,7 +384,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.statusLabel.setText('Auton palautus')
         self.ui.keyPictureLabel.show()
         self.ui.keyReturnBarcodeLineEdit.show()
+        self.ui.registerPlateLabel.show()
         self.ui.keyReturnBarcodeLineEdit.setFocus()
+        self.ui.goBackPushButton.show()
         self.ui.statusbar.showMessage('Lue avaimen viivakoodi')
         if self.ui.soundCheckBox.isChecked():
             self.playSoundInTread('readKey.wav')
@@ -404,7 +437,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             rowData = ''
             for vehicleData in vehiclTtuple:
                 vehicleDataAsStr = str(vehicleData)
-                print(vehicleDataAsStr)
                 if vehicleDataAsStr == 'True':
                     replacedVehicleData = 'automaatti'
                 elif vehicleDataAsStr == 'False':
@@ -412,9 +444,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 else:
                     replacedVehicleData = vehicleDataAsStr
                 # replacedVehicleData = vehicleDataAsStr.replace('False', '')
-                print(replacedVehicleData)
                 rowData = rowData + f'{replacedVehicleData} '
-                print(rowData)
                 
             rowText = rowData + f'{suffix}\n'
             catalogData = catalogData + rowText

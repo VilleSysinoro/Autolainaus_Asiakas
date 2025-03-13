@@ -2,6 +2,7 @@
   <qresource prefix="pictures">
     <file>uiPictures/soundOff.png</file>
     <file>uiPictures/soundOn.png</file>
+    <file>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</file>
     <file>uiPictures/back.png</file>
     <file>uiPictures/clock.png</file>
     <file>uiPictures/calendar.png</file>
