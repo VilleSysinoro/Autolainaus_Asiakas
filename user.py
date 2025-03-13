@@ -111,6 +111,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # ajossa olevien autojen katalogit
     @Slot()
     def setInitialElements(self):
+        self.ui.registerPlateBGLabel.hide()
         self.ui.returnCarPushButton.show()
         self.ui.takeCarPushButton.show()
         self.ui.statusFrame.show()
@@ -146,10 +147,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             # Luodaan tietokantayhteys-olio
             dbConnection = dbOperations.DbConnection(dbSettings)
+            # Luetaan ajossa näkymästä lista, jonka jäsenet ovat monikoita (tuple)
             inUseVehicles = dbConnection.readAllColumnsFromTable('ajossa')
-            
+
+            # Alustetaan tyhjä lista muokattuja autotietoja varten
+            modifiedInUseVehiclesList = []
+
+            # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
+            modifiedInUseVehicles = []
+
+            # Käydään lista läpi ja lisätään monikon alkiot listaan
+            for vehicleTuple in inUseVehicles:
+                
+                modifiedInUseVehicles.append(vehicleTuple[0])
+                modifiedInUseVehicles.append(vehicleTuple[1])
+                modifiedInUseVehicles.append(vehicleTuple[2])
+                modifiedInUseVehicles.append(vehicleTuple[3])
+                modifiedInUseVehicles.append(vehicleTuple[4])
+
+                # Lisätään sana paikkaa
+                modifiedInUseVehicles.append('paikkaa')
+                modifiedInUseVehicles.append(vehicleTuple[5])
+
+                # Muutetaan lista takaisin monikoksi
+                modifiedInsUseVehicleTuple = tuple(modifiedInUseVehicles)
+
+                # Lisätään monikko lopulliseen listaan
+                modifiedInUseVehiclesList.append(modifiedInsUseVehicleTuple)   
+                
             # Muodostetaan luettelo vapaista autoista createCatalog-metodilla
-            catalogData = self.createCatalog(inUseVehicles)
+            catalogData = self.createCatalog(modifiedInUseVehiclesList)
+            print(modifiedInUseVehiclesList)
+            print(catalogData)
             self.ui.inUsePlainTextEdit.setPlainText(catalogData)
 
         except Exception as e:
@@ -196,6 +225,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def activateKey(self):
         self.ui.ssnLineEdit.hide()
         self.ui.keyPictureLabel.show()
+        self.ui.registerPlateBGLabel.show()
         self.ui.keyBarcodeLineEdit.show()
         self.ui.keyBarcodeLineEdit.setFocus()
         self.ui.lenderNameLabel.show()
@@ -404,7 +434,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             rowData = ''
             for vehicleData in vehiclTtuple:
                 vehicleDataAsStr = str(vehicleData)
-                print(vehicleDataAsStr)
                 if vehicleDataAsStr == 'True':
                     replacedVehicleData = 'automaatti'
                 elif vehicleDataAsStr == 'False':
@@ -412,9 +441,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 else:
                     replacedVehicleData = vehicleDataAsStr
                 # replacedVehicleData = vehicleDataAsStr.replace('False', '')
-                print(replacedVehicleData)
                 rowData = rowData + f'{replacedVehicleData} '
-                print(rowData)
                 
             rowText = rowData + f'{suffix}\n'
             catalogData = catalogData + rowText

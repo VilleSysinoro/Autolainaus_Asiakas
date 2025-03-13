@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1366</width>
-    <height>768</height>
+    <width>1362</width>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,19 +63,21 @@ color: rgb(32, 75, 70);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>380</x>
       <y>330</y>
       <width>181</width>
-      <height>31</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <family>Trebuchet MS</family>
+      <pointsize>24</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);</string>
+     <string notr="true">background-color: rgb(208, 208, 208);</string>
     </property>
     <property name="text">
      <string/>
@@ -363,9 +365,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>370</y>
+      <y>420</y>
       <width>181</width>
-      <height>71</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -424,19 +426,21 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>380</x>
       <y>330</y>
-      <width>181</width>
-      <height>31</height>
+      <width>191</width>
+      <height>52</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <family>Trebuchet MS</family>
+      <pointsize>24</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);</string>
+     <string notr="true">background-color: rgb(208, 208, 208);</string>
     </property>
     <property name="text">
      <string/>
@@ -455,9 +459,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
-      <width>811</width>
-      <height>391</height>
+      <y>110</y>
+      <width>1071</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -469,79 +473,6 @@ color: rgb(255, 255, 255);</string>
     <property name="lineWidth">
      <number>0</number>
     </property>
-    <widget class="QPlainTextEdit" name="availablePlainTextEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>411</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>4</number>
-     </property>
-     <property name="midLineWidth">
-      <number>0</number>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="plainText">
-      <string/>
-     </property>
-     <property name="backgroundVisible">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="inUsePlainTextEdit">
-     <property name="geometry">
-      <rect>
-       <x>490</x>
-       <y>60</y>
-       <width>401</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>8</number>
-     </property>
-     <property name="plainText">
-      <string>AM-15 Renault Megane 5 henkilöä</string>
-     </property>
-    </widget>
     <widget class="Line" name="line">
      <property name="geometry">
       <rect>
@@ -592,7 +523,7 @@ border-color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="inUseLabel">
      <property name="geometry">
       <rect>
-       <x>650</x>
+       <x>580</x>
        <y>10</y>
        <width>131</width>
        <height>31</height>
@@ -612,6 +543,79 @@ border-color: rgb(255, 255, 255);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="inUsePlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>60</y>
+       <width>591</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>8</number>
+     </property>
+     <property name="plainText">
+      <string>AM-15 Renault Megane 5 henkilöä</string>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="availablePlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>421</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>4</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+     <property name="backgroundVisible">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>
@@ -697,13 +701,52 @@ border-color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="registerPlateBGLabel">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>320</y>
+      <width>241</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>ssnLineEdit</zorder>
+   <zorder>takeCarPushButton</zorder>
+   <zorder>keyPictureLabel</zorder>
+   <zorder>lenderPictureLabel</zorder>
+   <zorder>dateLabel</zorder>
+   <zorder>returnCarPushButton</zorder>
+   <zorder>calendarLabel</zorder>
+   <zorder>timeLabel</zorder>
+   <zorder>clockLabel</zorder>
+   <zorder>goBackPushButton</zorder>
+   <zorder>lenderNameLabel</zorder>
+   <zorder>okPushButton</zorder>
+   <zorder>statusFrame</zorder>
+   <zorder>statusLabel</zorder>
+   <zorder>soundCheckBox</zorder>
+   <zorder>vehiclePictureLabel</zorder>
+   <zorder>registerPlateBGLabel</zorder>
+   <zorder>keyReturnBarcodeLineEdit</zorder>
+   <zorder>keyBarcodeLineEdit</zorder>
+   <zorder>carInfoLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1366</width>
+     <width>1362</width>
      <height>33</height>
     </rect>
    </property>
