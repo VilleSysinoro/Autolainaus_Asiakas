@@ -735,7 +735,10 @@ border-color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/raseko_logo_pysty-b27c909bbc.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/Raseko-logo-pysty_NEGA.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <zorder>ssnLineEdit</zorder>
