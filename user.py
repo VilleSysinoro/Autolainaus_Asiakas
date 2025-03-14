@@ -134,7 +134,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.carInfoLabel.hide()
         self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ui.okPushButton.setEnabled(True)
-
+        self.ui.availablePlainTextEdit.clear()
+        self.ui.inUsePlainTextEdit.clear()
         # Palautetaan auton oletuskuva
         self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
         
@@ -154,11 +155,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             modifiedInUseVehiclesList = []
 
             # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
-            modifiedInUseVehicles = []
+            
 
             # Käydään lista läpi ja lisätään monikon alkiot listaan
             for vehicleTuple in inUseVehicles:
-                
+                modifiedInUseVehicles = []
                 modifiedInUseVehicles.append(vehicleTuple[0])
                 modifiedInUseVehicles.append(vehicleTuple[1])
                 modifiedInUseVehicles.append(vehicleTuple[2])
@@ -201,6 +202,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             text = 'Vapaana olevien autojen tiedot eivät ole saatavissa'
             detailedText = str(e)
             self.openWarning(title, text, detailedText)
+
+        # Aktivoidaan lainaus- ja palautuspainikkeet, jos lainattavia tai palautettaiva autoja
+        print('Vapaana:', self.ui.availablePlainTextEdit.toPlainText())
+        print('Ajossa:', self.ui.inUsePlainTextEdit.toPlainText())
+        if self.ui.availablePlainTextEdit.toPlainText() == '':
+            self.ui.takeCarPushButton.setEnabled(False)
+        else:
+            self.ui.takeCarPushButton.setEnabled(True)
+
+        if self.ui.inUsePlainTextEdit.toPlainText() == '':
+            self.ui.returnCarPushButton.setEnabled(False)
+        else:
+            self.ui.returnCarPushButton.setEnabled(True)
+
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     @Slot()
@@ -382,7 +397,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.returnCarPushButton.hide()
         self.ui.statusLabel.setText('Auton palautus')
         self.ui.keyPictureLabel.show()
+        self.ui.registerPlateBGLabel.show()
         self.ui.keyReturnBarcodeLineEdit.show()
+        self.ui.goBackPushButton.show()
         self.ui.keyReturnBarcodeLineEdit.setFocus()
         self.ui.statusbar.showMessage('Lue avaimen viivakoodi')
         if self.ui.soundCheckBox.isChecked():
