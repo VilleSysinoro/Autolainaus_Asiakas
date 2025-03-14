@@ -729,7 +729,7 @@ border-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1270</x>
-      <y>0</y>
+      <y>10</y>
       <width>71</width>
       <height>81</height>
      </rect>
@@ -738,7 +738,7 @@ border-color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>uiPictures/Logo.png</pixmap>
+     <pixmap>uiPictures/Raseko-logo-pysty_NEGA.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
