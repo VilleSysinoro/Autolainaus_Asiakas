@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="pictures">
+    <file>uiPictures/raseko_logo_pysty-b27c909bbc.png</file>
     <file>uiPictures/soundOff.png</file>
     <file>uiPictures/soundOn.png</file>
     <file>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</file>

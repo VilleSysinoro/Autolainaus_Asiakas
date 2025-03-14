@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Auto-osaston ajoneuvojen lainaus</string>
   </property>
   <property name="windowIcon">
    <iconset theme="emblem-shared"/>
@@ -112,7 +112,7 @@ color: rgb(0, 0, 0);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa henkilön tiedot tietokantaa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Avaa auton lainaus ikkunan&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="toolTipDuration">
      <number>3000</number>
@@ -221,7 +221,7 @@ background-color: rgb(140, 51, 85);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa henkilön tiedot tietokantaa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Avaa auton palautus ikkunan&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="toolTipDuration">
      <number>3000</number>
@@ -649,7 +649,7 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QCheckBox" name="soundCheckBox">
     <property name="geometry">
      <rect>
-      <x>1260</x>
+      <x>1170</x>
       <y>10</y>
       <width>81</width>
       <height>61</height>
@@ -722,6 +722,22 @@ border-color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="rasekoLogoLabel">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>10</y>
+      <width>91</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/raseko_logo_pysty-b27c909bbc.png</pixmap>
+    </property>
+   </widget>
    <zorder>ssnLineEdit</zorder>
    <zorder>takeCarPushButton</zorder>
    <zorder>keyPictureLabel</zorder>
@@ -742,6 +758,7 @@ border-color: rgb(255, 255, 255);</string>
    <zorder>keyReturnBarcodeLineEdit</zorder>
    <zorder>keyBarcodeLineEdit</zorder>
    <zorder>statusFrame</zorder>
+   <zorder>rasekoLogoLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -111,6 +111,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # ajossa olevien autojen katalogit
     @Slot()
     def setInitialElements(self):
+        self.ui.rasekoLogoLabel.show()
         self.ui.returnCarPushButton.show()
         self.ui.takeCarPushButton.show()
         self.ui.statusFrame.show()
@@ -134,10 +135,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.carInfoLabel.hide()
         self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ui.okPushButton.setEnabled(True)
+        self.ui.availablePlainTextEdit.clear()
+        self.ui.inUsePlainTextEdit.clear()
 
         # Palautetaan auton oletuskuva
         self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
-        
         
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
@@ -153,11 +155,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # Alustetaan tyhjä lista muokattuja autotietoja varten
             modifiedInUseVehiclesList = []
 
-            # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
-            modifiedInUseVehicles = []
-            
             # Käydään lista läpi ja lisätään tuplen monikon alkiot listaan
             for vehiocleTuple in inUseVehicles:
+                # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
+                modifiedInUseVehicles = []
 
                 modifiedInUseVehicles.append(vehiocleTuple[0])
                 modifiedInUseVehicles.append(vehiocleTuple[1])
@@ -202,6 +203,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             text = 'Vapaana olevien autojen tiedot eivät ole saatavissa'
             detailedText = str(e)
             self.openWarning(title, text, detailedText)
+
+        # Aktivoidaan lainaus ja palautuspainikkeet, jos lainattavia tai palautettavia autoja
+        print('Vapaana:', self.ui.availablePlainTextEdit.toPlainText())
+        print('Ajossa:', self.ui.inUsePlainTextEdit.toPlainText())
+        if self.ui.availablePlainTextEdit.toPlainText() == '':
+            self.ui.takeCarPushButton.setEnabled(False)
+        else:
+            self.ui.takeCarPushButton.setEnabled(True)
+
+        if self.ui.inUsePlainTextEdit.toPlainText() == '':
+            self.ui.returnCarPushButton.setEnabled(False)
+        else:
+            self.ui.returnCarPushButton.setEnabled(True)
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     @Slot()
