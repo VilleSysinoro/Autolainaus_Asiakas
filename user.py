@@ -65,7 +65,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # ---------------------
         
         # Kun Lainaa-painiketta painetaan, kutsutaan activateLender-metodia
-        self.ui.takeCarPushButton.clicked.connect(self.activateLender)
+        self.ui.takeCarPushButton.clicked.connect(self.activateReason)
 
         # Kun ajokortin viivakoodi on luettu, kutsutaan activateKey-metodia
         self.ui.ssnLineEdit.returnPressed.connect(self.activateKey)
@@ -111,34 +111,43 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # ajossa olevien autojen katalogit
     @Slot()
     def setInitialElements(self):
+
+        # Piilotetaan alkutilanteessa lainauksen ja palautuksen elementit
         self.ui.registerPlateBGLabel.hide()
-        self.ui.returnCarPushButton.show()
-        self.ui.takeCarPushButton.show()
-        self.ui.statusFrame.show()
-        self.ui.okPushButton.hide()
-        self.ui.calendarLabel.hide()
-        self.ui.clockLabel.hide()
-        self.ui.dateLabel.hide()
-        self.ui.goBackPushButton.hide()
-        self.ui.keyBarcodeLineEdit.clear()
-        self.ui.keyBarcodeLineEdit.hide()
-        self.ui.keyReturnBarcodeLineEdit.clear()
-        self.ui.keyReturnBarcodeLineEdit.hide()
-        self.ui.keyPictureLabel.hide()
-        self.ui.lenderPictureLabel.hide()
-        self.ui.ssnLineEdit.clear()
         self.ui.ssnLineEdit.hide()
         self.ui.statusLabel.hide()
         self.ui.timeLabel.hide()
         self.ui.lenderNameLabel.hide()
         self.ui.carInfoLabel.hide()
-        self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.ui.okPushButton.setEnabled(True)
+        self.ui.reasonComboBox.hide()
+        self.ui.okPushButton.hide()
+        self.ui.calendarLabel.hide()
+        self.ui.clockLabel.hide()
+        self.ui.dateLabel.hide()
+        self.ui.goBackPushButton.hide()
+        self.ui.keyBarcodeLineEdit.hide()
+        self.ui.keyReturnBarcodeLineEdit.hide()
+        self.ui.keyPictureLabel.hide()
+        self.ui.lenderPictureLabel.hide()
+
+        # Tyhjennetään syöttökentät
         self.ui.availablePlainTextEdit.clear()
         self.ui.inUsePlainTextEdit.clear()
+        self.ui.keyBarcodeLineEdit.clear()
+        self.ui.keyReturnBarcodeLineEdit.clear()
+        self.ui.ssnLineEdit.clear()
+        
+        # Näytetään alkutilanteen elementit
+        self.ui.returnCarPushButton.show()
+        self.ui.takeCarPushButton.show()
+        self.ui.statusFrame.show()
+
+        # Aktivoidaan tarvittavat painikkeet
+        self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ui.okPushButton.setEnabled(True)
+
         # Palautetaan auton oletuskuva
         self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
-        
         
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
@@ -156,7 +165,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
             
-
             # Käydään lista läpi ja lisätään monikon alkiot listaan
             for vehicleTuple in inUseVehicles:
                 modifiedInUseVehicles = []
@@ -216,25 +224,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.ui.returnCarPushButton.setEnabled(True)
 
+    # Näytetään ajon tarkoitus -yhdistelmäruudun
+    @Slot()
+    def activateReason(self):
+        self.ui.statusFrame.hide()
+        self.ui.statusLabel.setText('Auton lainaus')
+        self.ui.goBackPushButton.show()
+        self.ui.reasonComboBox.show()
+        self.ui.returnCarPushButton.hide()
+        self.ui.takeCarPushButton.hide()
+        self.ui.statusLabel.show()
+        self.ui.statusbar.showMessage('Valitse ajon tarkoitus')
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     @Slot()
     def activateLender(self):
-        self.ui.statusFrame.hide()
-        self.ui.statusLabel.setText('Auton lainaus')
         self.ui.lenderPictureLabel.show()
         self.ui.ssnLineEdit.show()
-        self.ui.goBackPushButton.show()
         self.ui.ssnLineEdit.setFocus()
-        self.ui.returnCarPushButton.hide()
-        self.ui.takeCarPushButton.hide()
-        self.ui.statusLabel.show()
-        self.ui.statusbar.showMessage('Syötä ajokortti koneeseen')
+        
         if self.ui.soundCheckBox.isChecked():
             self.playSoundInTread('drivingLicence.wav')
             
-        
-
     # Näyttää avaimen kuvakkeen, rekisterikentän ja lainaajan tiedot
     @Slot()
     def activateKey(self):
@@ -305,7 +316,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             text = 'Auton palautus edellisestä ajosta on tekemättä, ota yhteys henkilökuntaan'
             detailedText = str(e)
 
-            
             # Muuta kursorin muoto
             self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.ForbiddenCursor))
 
@@ -386,9 +396,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             detailedText = str(e)
             self.openWarning(title, text, detailedText)
 
-    
-        
-
     # Näytetään palautukseen liittyvät kentät ja kuvat
     @Slot()
     def activateReturnCar(self):
@@ -424,7 +431,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.ui.soundCheckBox.isChecked():
             self.playSoundInTread('returnOk.wav')
 
-    
     @Slot()
     def goBack(self):
         self.setInitialElements()
