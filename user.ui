@@ -624,9 +624,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>860</x>
-      <y>280</y>
+      <y>260</y>
       <width>211</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -761,15 +761,15 @@ color: rgb(255, 255, 255);</string>
    <widget class="QComboBox" name="reasonComboBox">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>430</x>
       <y>170</y>
-      <width>321</width>
+      <width>441</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>32</pointsize>
+      <pointsize>26</pointsize>
       <bold>true</bold>
      </font>
     </property>
