@@ -64,8 +64,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
         
-        # Kun Lainaa-painiketta painetaan, kutsutaan activateLender-metodia
+        # Kun Lainaa-painiketta painetaan, kutsutaan activateReason-metodia
         self.ui.takeCarPushButton.clicked.connect(self.activateReason)
+
+        # Kun ajon syy on valittu, kutsutaan activateLender-metodi
+        self.ui.reasonComboBox.currentIndexChanged.connect(self.activateLender)
 
         # Kun ajokortin viivakoodi on luettu, kutsutaan activateKey-metodia
         self.ui.ssnLineEdit.returnPressed.connect(self.activateKey)
@@ -190,8 +193,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 
             # Muodostetaan luettelo vapaista autoista createCatalog-metodilla
             catalogData = self.createCatalog(modifiedInUseVehiclesList)
-            print(modifiedInUseVehiclesList)
-            print(catalogData)
             self.ui.inUsePlainTextEdit.setPlainText(catalogData)
 
         except Exception as e:
@@ -216,8 +217,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.openWarning(title, text, detailedText)
 
         # Aktivoidaan lainaus- ja palautuspainikkeet, jos lainattavia tai palautettaiva autoja
-        print('Vapaana:', self.ui.availablePlainTextEdit.toPlainText())
-        print('Ajossa:', self.ui.inUsePlainTextEdit.toPlainText())
         if self.ui.availablePlainTextEdit.toPlainText() == '':
             self.ui.takeCarPushButton.setEnabled(False)
         else:
@@ -231,6 +230,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Näyttää ajon tarkoitus -yhdistelmäruudun
     @Slot()
     def activateReason(self):
+
+        # Asetetaan elementtien näkyvyydet
         self.ui.statusFrame.hide()
         self.ui.statusLabel.setText('Auton lainaus')
         self.ui.goBackPushButton.show()
@@ -239,6 +240,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.takeCarPushButton.hide()
         self.ui.statusLabel.show()
         self.ui.statusbar.showMessage('Valitse ajon tarkoitus')
+
+        # Päivitetään ajon tarkoitus -yhdistelmäruudun arvot
+        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+    
+
+        # Tehdään lista ajon tarkoituksista
+        dbConnection = dbOperations.DbConnection(dbSettings) # Luodaan tietokantayhteys-olio
+
+        
+        reasonList = dbConnection.readColumsFromTable('tarkoitus', ['tarkoitus'])
+        reasonStringList = []
+        for item in reasonList:
+            stringValue = str(item[0])
+            reasonStringList.append(stringValue)
+        
+        self.ui.reasonComboBox.clear()
+        self.ui.reasonComboBox.addItems(reasonStringList)
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     @Slot()
@@ -389,9 +410,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             # Luodaan tietokantayhteys-olio
             dbConnection = dbOperations.DbConnection(dbSettings)
-            ssn = self.ui.ssnLineEdit.text()
-            key = self.ui.keyBarcodeLineEdit.text()
-            dataDictionary = {'hetu': ssn,
+            reason = self.ui.reasonComboBox.currentText()
+            ssn = self.ui.ssnLineEdit.text() # Henkilötunnus ajopäiväkirjaan
+            key = self.ui.keyBarcodeLineEdit.text() # Rekisterinumero ajopäiväkirjaan
+            dataDictionary = {'tarkoitus': reason,
+                            'hetu': ssn,
                             'rekisterinumero': key}
             dbConnection.addToTable('lainaus', dataDictionary)
 
@@ -416,8 +439,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.takeCarPushButton.hide()
         self.ui.returnCarPushButton.hide()
         self.ui.statusLabel.setText('Auton palautus')
-        self.ui.keyPictureLabel.show()
-        self.ui.registerPlateBGLabel.show()
+        self.ui.keyPictureReturnLabel.show()
+        self.ui.registerPlateBGReturnLabel.show()
         self.ui.keyReturnBarcodeLineEdit.show()
         self.ui.goBackPushButton.show()
         self.ui.keyReturnBarcodeLineEdit.setFocus()
@@ -436,7 +459,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbConnection = dbOperations.DbConnection(dbSettings)
         criteria = f"'{self.ui.keyReturnBarcodeLineEdit.text()}'" # Tekstiä -> lisää ':t
 
-        dbConnection.modifyTableData('lainaus', 'palautus','CURRENT_TIMESTAMP', 'rekisterinumero', criteria)
+        dbConnection.modifyTableData('lainaus', 'palautusaika','CURRENT_TIMESTAMP', 'rekisterinumero', criteria)
 
 
         self.ui.statusbar.showMessage('Auto palautettu')
@@ -506,6 +529,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 # LUODAAN VARSINAINEN SOVELLUS
 # ============================
 app = QtWidgets.QApplication(sys.argv)
+
+# Asetetaan sovelluksen tyyliksi Fusion, ilman asetusta käyttöjärjestelmän oletustyyli tulee käyttöön
+app.setStyle('fusion')
 
 # Luodaan objekti pääikkunalle ja tehdään siitä näkyvä
 window = MainWindow()

@@ -26,7 +26,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>190</x>
       <y>470</y>
       <width>191</width>
       <height>31</height>
@@ -95,7 +95,7 @@ background-color: rgb(140, 51, 85);</string>
      </size>
     </property>
     <property name="autoDefault">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lenderPictureLabel">
@@ -104,7 +104,7 @@ background-color: rgb(140, 51, 85);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>170</x>
       <y>230</y>
       <width>211</width>
       <height>231</height>
@@ -288,7 +288,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>30</x>
       <y>450</y>
-      <width>261</width>
+      <width>431</width>
       <height>71</height>
      </rect>
     </property>
@@ -461,7 +461,7 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPlainTextEdit" name="inUsePlainTextEdit">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>600</x>
        <y>140</y>
        <width>541</width>
        <height>261</height>
@@ -640,15 +640,15 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QComboBox" name="reasonComboBox">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>330</x>
       <y>130</y>
-      <width>321</width>
+      <width>491</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>32</pointsize>
+      <pointsize>28</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -656,7 +656,8 @@ border-color: rgb(255, 255, 255);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);</string>
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(32, 75, 70);</string>
     </property>
     <property name="currentText">
      <string/>
@@ -791,7 +792,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>480</x>
       <y>390</y>
       <width>181</width>
-      <height>52</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
@@ -806,6 +807,9 @@ border-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
