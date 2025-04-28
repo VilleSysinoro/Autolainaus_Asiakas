@@ -206,7 +206,6 @@ class DbConnection():
             
             # Määritellään lopullinen SQL-lause
             sqlClause = f'SELECT {cleanedColumnString} FROM {table} WHERE {filter};'
-            print(sqlClause)
             # Suoritetaan SQL-lause ja luetaan tulokset kursorista
             cursor.execute(sqlClause)
             records= cursor.fetchall()
@@ -249,10 +248,8 @@ class DbConnection():
             # Suoritetaan SQL-lause ja luetaan tulokset kursorista
             cursor.execute(sqlClause)
             records= cursor.fetchall()
-            print(records)
             row = records[0] # Listasta monikko (tuple)
             column = row[0] # Monikosta arvo, joka tulee funktion tuottamana
-            print(column)
             isoDateTime = f'{column}' # Arvo merkkijonoksi muutettuna
             return isoDateTime
 
@@ -292,7 +289,6 @@ class DbConnection():
 
             # Määritellään lopullinen SQL-lause
             sqlClause = f'UPDATE {table} SET  {column} = {newValue} WHERE {criteriaColumn} = {criteriaValue}'
-            print(sqlClause)
             # Suoritetaan SQL-lause
             cursor.execute(sqlClause)
 
@@ -330,7 +326,6 @@ class DbConnection():
 
             # Määritellään lopullinen SQL-lause, paikkamerkki %s korvautuu binääritiedolla
             sqlClause = f'UPDATE {table} SET  {column} = %s WHERE {criteriaColumn} = {criteriaValue}'
-            print(sqlClause)
             # Suoritetaan SQL-lause ja lisätään data monikkona
             cursor.execute(sqlClause, (data,))
 
@@ -359,7 +354,6 @@ class DbConnection():
 
             # Määritellään lopullinen SQL-lause, paikkamerkki %s korvautuu binääritiedolla
             sqlClause = f'DELETE FROM {table} WHERE {criteriaColumn} = {criteriaValue}'
-            print(sqlClause)
             # Suoritetaan SQL-lause ja lisätään data monikkona
             cursor.execute(sqlClause)
 
@@ -384,4 +378,3 @@ if __name__ == "__main__":
                       'userName': 'postgres',
                       'password': 'Q2werty'}
     dbconnection = DbConnection(settingsDictionary)
-    print(dbconnection.connectionString)
