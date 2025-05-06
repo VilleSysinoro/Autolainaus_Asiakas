@@ -679,7 +679,7 @@ color: rgb(32, 75, 70);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/plateBGPicture.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -777,7 +777,7 @@ color: rgb(32, 75, 70);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/plateBGPicture.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
