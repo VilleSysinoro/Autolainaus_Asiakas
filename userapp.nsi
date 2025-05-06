@@ -11,7 +11,7 @@
 
   # Name and installer file name, do not use plain setup.exe as OutFile
   Name "Atuolainaus"
-  OutFile "autolainausInstaller.exe"
+  OutFile "userAppSetup.exe"
   Unicode True
 
   # Default installation folder: user's application data directory
@@ -38,7 +38,7 @@
 
   # Add a bitmap (150 x 57 px) for a logo into the header of the installer page
   !define MUI_HEADERIMAGE
-  !define MUI_HEADERIMAGE_BITMAP "VWbg.bmp"
+  !define MUI_HEADERIMAGE_BITMAP "RasekoNSIS.bmp"
 
   # Set left side image for start and end pages
   !define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange.bmp"
