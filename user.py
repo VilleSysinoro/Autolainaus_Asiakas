@@ -141,6 +141,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.ssnLineEdit.clear()
         
         # Näytetään alkutilanteen elementit
+        self.ui.vehiclePictureLabel.show()
         self.ui.returnCarPushButton.show()
         self.ui.takeCarPushButton.show()
         self.ui.statusFrame.show()
@@ -151,7 +152,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Palautetaan auton oletuskuva
         self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
-        #self.ui.vehiclePictureLabel.move(540,520)
+        self.ui.vehiclePictureLabel.move(540,520)
         
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
@@ -230,6 +231,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def activateReason(self):
 
         # Asetetaan elementtien näkyvyydet
+        self.ui.vehiclePictureLabel.hide()
         self.ui.statusFrame.hide()
         self.ui.statusLabel.setText('Auton lainaus')
         self.ui.goBackPushButton.show()
@@ -380,6 +382,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # Create a pixmap by reading the file and set label    
             pixmap = QPixmap('currentCar.png')
             self.ui.vehiclePictureLabel.setPixmap(pixmap)
+            self.ui.vehiclePictureLabel.move(860,330)
+            self.ui.vehiclePictureLabel.show()
 
         except Exception as e:
             title = 'Auton kuvan lataaminen ei onnistunut'
@@ -421,6 +425,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Näytetään palautukseen liittyvät kentät ja kuvat
     @Slot()
     def activateReturnCar(self):
+        self.ui.vehiclePictureLabel.hide()
         self.ui.statusFrame.hide()
         self.ui.takeCarPushButton.hide()
         self.ui.returnCarPushButton.hide()

@@ -569,7 +569,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>uiPictures/Auton_matala_EU-kilpi_118x442_mm.png-removebg-preview.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/plateBGPicture.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -693,7 +693,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="calendarLabel">
     <property name="geometry">
      <rect>
-      <x>840</x>
+      <x>830</x>
       <y>530</y>
       <width>41</width>
       <height>41</height>
@@ -739,7 +739,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="clockLabel">
     <property name="geometry">
      <rect>
-      <x>840</x>
+      <x>830</x>
       <y>580</y>
       <width>41</width>
       <height>41</height>
