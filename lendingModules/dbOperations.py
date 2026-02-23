@@ -307,6 +307,47 @@ class DbConnection():
                 cursor.close() # Tuhotaan kursori
                 currentConnection.close() # Tuhotaan yhteys
 
+    def updateReturnTimeStamp(self, table: str, column: str,criteriaColumn: str, criteriaValue):
+        """Updataes a column according to a filtering criteria
+
+        Args:
+            table (str): Name of the table
+            column (str): Name of the column to be updated
+            newValue (any): The new value for the column
+            criteriaColumn (str): A column to use in WHERE-claus
+            criteriaValue (any): The value of criteria colunm
+
+        Raises:
+            e: Error message to be propagated
+
+        """
+        # Yritetään avata yhteys tietokantaan ja päivittää tietueita
+        try:
+            # Luodaan yhteys tietokantaan
+            currentConnection = psycopg2.connect(self.connectionString)
+
+            # Luodaan kursori suorittamaan tietokantoperaatiota
+            cursor = currentConnection.cursor()
+
+            # Määritellään lopullinen SQL-lause
+            sqlClause = f'UPDATE {table} SET {column} = CURRENT_TIMESTAMP WHERE {column} IS NULL AND {criteriaColumn} = {criteriaValue}'
+
+            # Suoritetaan SQL-lause
+            cursor.execute(sqlClause)
+
+            # Vahvistetaan tapahtuma (transaction)
+            currentConnection.commit()
+
+        # Jos tapahtuu virhe, välitetään se luokkaa käyttävälle ohjelmalle
+        except (Exception, psycopg2.Error) as e:
+            raise e 
+        finally:
+
+            # Selvitetään muodostuiko yhteysolio
+            if currentConnection:
+                cursor.close() # Tuhotaan kursori
+                currentConnection.close() # Tuhotaan yhteys
+
     # Päivitetään taulun binäärisaraketta          
     def updateBinaryField(self, table: str, column: str, criteriaColumn: str, criteriaValue, data):
         """Updates a given bytea column in a table accordinto to a criteria
