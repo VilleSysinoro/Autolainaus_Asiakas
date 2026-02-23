@@ -265,6 +265,7 @@ class DbConnection():
                 currentConnection.close() # Tuhotaan yhteys
 
     # Metodi tietojen muokkaamiseen, yksittäinen sarake
+    # TODO: Muokkaa tätä, siten että saadaan toinen ehto, siitä että palautusaika pitää olla tyhjä!
     def modifyTableData(self, table: str, column: str, newValue, criteriaColumn: str, criteriaValue):
         """Updataes a column according to a filtering criteria
 
