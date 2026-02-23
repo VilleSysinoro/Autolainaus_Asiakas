@@ -446,6 +446,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.playSoundInTread('readKey.wav')
 
     # Tallennetaan palautuksen tiedot tietokantaan ja palautetaan UI alkutilaan
+    # BUG: tallentaa saman aikaleiman kaikkiin palautuksiin! Pitää rajoittaa vain palauttamattomiin autoihin
+    # WHERE reksiterinumero = 'rekisterrinumero' AND palautusaika IS NULL
     @Slot()
     def saveReturnData(self):
         # Save data to the database
@@ -539,3 +541,4 @@ app.exec()
 
 
     
+
